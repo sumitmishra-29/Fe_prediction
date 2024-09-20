@@ -95,15 +95,16 @@ def load_svm_classifier(model_path="svm_iron_deficiency_model.pkl", overwrite=Fa
     return model
 
 def encode_categorical_features(age_range, sex, blood_group):
-    age_encoder = OneHotEncoder(sparse=False)
+    age_encoder = OneHotEncoder(sparse_output=False)  # Updated argument
     sex_encoder = LabelEncoder()
-    blood_group_encoder = OneHotEncoder(sparse=False)
+    blood_group_encoder = OneHotEncoder(sparse_output=False)  # Updated argument
 
     age_range_encoded = age_encoder.fit_transform(np.array([age_range]).reshape(-1, 1))
     sex_encoded = sex_encoder.fit_transform([sex])
     blood_group_encoded = blood_group_encoder.fit_transform(np.array([blood_group]).reshape(-1, 1))
 
     return np.concatenate([age_range_encoded.flatten(), sex_encoded.flatten(), blood_group_encoded.flatten()])
+
 
 def classify_iron_deficiency(features, additional_features, rf_model, svm_model):
     feature_vector = np.array([list(features.values())])
@@ -119,24 +120,23 @@ def train_svm_classifier(model, X_train, y_train, model_path="svm_iron_deficienc
     joblib.dump(model, model_path)
     print(f"SVM model trained and saved to {model_path}")
 
-def download_video_from_gdrive(gdrive_link, output_path="video.mp4", retries=3, delay=30):
+def download_video_from_gdrive(gdrive_link, output_path="video.mp4", retries=5, delay=5):
     for attempt in range(retries):
         try:
             print(f"Attempting to download video (Attempt {attempt + 1})...")
-            gdown.download(gdrive_link, output_path, quiet=False)
-            # Check if the file was downloaded successfully
+            gdown.download(gdrive_link, output_path, quiet=False, fuzzy=True)
             if os.path.exists(output_path) and os.path.getsize(output_path) > 0:
                 print(f"Video downloaded successfully to {output_path}.")
-                time.sleep(delay) 
+                time.sleep(delay)
                 return
             else:
                 print("Downloaded file is empty or not found. Retrying...")
         except Exception as e:
             print(f"Error downloading video: {e}. Retrying...")
-        
-         # Wait before retrying
+        time.sleep(delay)
 
     print("Failed to download video after multiple attempts.")
+
 
 def process_video(video_path, age_range, sex, blood_group):
     frames = extract_frames(video_path)
@@ -192,7 +192,7 @@ def process_csv(csv_path):
         process_video(video_output_path, age_range, sex, blood_group)
 
 # Example usage
-csv_path = "C:\\Users\\Sumit\\OneDrive\\Desktop\\Fe_prediction\\Vdata\\DATA.csv"
+csv_path = "C:\\Users\\ujjwa\\Desktop\\DotBatch\\Fe_prediction\\Vdata\\data.csv"
 df = pd.read_csv(csv_path)
 df.columns = df.columns.str.strip()
 process_csv(csv_path)
