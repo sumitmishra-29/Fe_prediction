@@ -10,8 +10,8 @@ MIN_MATCH_COUNT = 10
 height, width = [], []
 t = 0
 
-RGB = 'C:\\Users\\Sumit\\OneDrive\\Desktop\\Fe_prediction\\trainA'
-CIR = 'C:\\Users\\Sumit\\OneDrive\\Desktop\\Fe_prediction\\trainB'
+RGB = 'C:\\Users\\ujjwa\\Desktop\\DotBatch\\Fe_prediction\\trainA'
+CIR = 'C:\\Users\\ujjwa\\Desktop\\DotBatch\\Fe_prediction\\trainB'
 
 if not os.path.isdir(RGB):
     os.mkdir(RGB)
