@@ -203,11 +203,11 @@ if __name__ == "__main__":
         main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
 
 # Example usage
-<<<<<<< HEAD:PredictM2.py
+
 csv_path = "C:\\Users\\Sumit\\OneDrive\\Desktop\\Fe_prediction\\Vdata\\data.csv"
-=======
+
 csv_path = "C:\\Users\\ujjwa\\Desktop\\DotBatch\\Fe_prediction\\Vdata\\data.csv"
->>>>>>> 46f2fbbe7beadb214f17c52c20637615f33c5116:appS.py
+
 df = pd.read_csv(csv_path)
 df.columns = df.columns.str.strip()
 process_csv(csv_path)
