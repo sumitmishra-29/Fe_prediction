@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Deficiency Prediction</title>
+</head>
+<body>
+    <h1>Iron Deficiency Prediction Form</h1>
+    <form id="prediction-form">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br><br>
+        
+        <label for="sex">Sex:</label>
+        <select name="sex" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <label for="age">Age:</label>
+        <input type="text" name="age" required><br><br>
+
+        <label for="blood_group">Blood Group:</label>
+        <input type="text" name="blood_group" required><br><br>
+
+        <label for="video">Upload Video:</label>
+        <input type="file" name="video" accept="video/*" required><br><br>
+
+        <input type="button" value="Submit" onclick="submitForm()">
+    </form>
+
+    <script>
+        async function submitForm() {
+            const form = document.getElementById('prediction-form');
+            const formData = new FormData(form);
+            const response = await fetch('http://127.0.0.1:5000/', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.text();
+            alert(result);
+        }
+    </script>
+</body>
+</html>

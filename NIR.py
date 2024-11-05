@@ -159,7 +159,8 @@ def convert_to_infrared(frame):
     # Convert to NIR by extracting the green channel and applying a colormap
     nir = frame[:,:,1]
     nir_colored = cv2.applyColorMap(nir, cv2.COLORMAP_HOT)
+    
     return nir_colored
 
 if __name__ == '__main__':
-    import APP
+    import Refine
