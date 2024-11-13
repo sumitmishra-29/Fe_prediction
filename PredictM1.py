@@ -91,7 +91,7 @@ def classify_iron_deficiency(features, model):
     confidence = model.predict_proba(feature_vector)[0]
     return prediction, confidence
 
-def train_classifier(model, X_train, y_train, model_path="iron_deficiency_model.pkl"):
+def train_classifier(model, X_train, y_train, model_path="RF_iron_deficiency_model.pkl"):
    
     # Fit the model with training data
     model.fit(X_train, y_train)

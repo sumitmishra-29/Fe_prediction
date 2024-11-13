@@ -206,7 +206,7 @@ if __name__ == "__main__":
 
 csv_path = "C:\\Users\\Sumit\\OneDrive\\Desktop\\Fe_prediction\\Vdata\\data.csv"
 
-csv_path = "C:\\Users\\ujjwa\\Desktop\\DotBatch\\Fe_prediction\\Vdata\\data.csv"
+#csv_path = "C:\\Users\\ujjwa\\Desktop\\DotBatch\\Fe_prediction\\Vdata\\data.csv"
 
 df = pd.read_csv(csv_path)
 df.columns = df.columns.str.strip()
